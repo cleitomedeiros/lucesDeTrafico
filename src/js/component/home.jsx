@@ -1,26 +1,46 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+function Home() {
+  const [estadoRojo, setEstadoRojo] = useState('apagada');
+  const [estadoAmarillo, setEstadoAmarillo] = useState('apagada');
+  const [estadoVerde, setEstadoVerde] = useState('apagada');
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
+  useEffect(() => {
+  }, [estadoRojo, estadoAmarillo, estadoVerde]);
 
+  return (
+    <div>
+      <div id="barra"></div>
+      <div id="semaforo">
+        <div
+          className="luz rojo"
+          id={estadoRojo}
+          onClick={() =>
+            setEstadoRojo('encendido') ||
+            setEstadoAmarillo('apagado') ||
+            setEstadoVerde('apagado')
+          }
+        ></div>
+        <div
+          className="luz amarillo"
+          id={estadoAmarillo}
+          onClick={() =>
+            setEstadoRojo('apagado') ||
+            setEstadoAmarillo('encendido') ||
+            setEstadoVerde('apagado')
+          }
+        ></div>
+        <div
+          className="luz verde"
+          id={estadoVerde}
+          onClick={() =>
+            setEstadoRojo('apagado') ||
+            setEstadoAmarillo('apagado') ||
+            setEstadoVerde('encendido')
+          }
+        ></div>
+      </div>
+    </div>
+  );
+}
 export default Home;
